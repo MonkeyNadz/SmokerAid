@@ -8,9 +8,9 @@ DIY electronics solution for helping maintain stable temps when smoking meat on 
 
 Very much a work in progress - and something I'm doing for fun - I'll update this as I complete parts.
 
- 1. 12V and 5V Power Circuitry
- 2. Basic Raspberry Pi Setup
- 3. Wiring and Basic Thermocouple Testing
+ 1. 12V and 5V Power Circuitry - Complete
+ 2. Basic Raspberry Pi Setup - Complete
+ 3. Wiring and Basic Thermocouple Testing - Complete
  4. Fan Control with Relay
  5. Temp Change Triggering Fan On/Off
  6. Bringing it Together on the CLI.
