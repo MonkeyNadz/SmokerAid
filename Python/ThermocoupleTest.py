@@ -18,5 +18,6 @@ CS.direction = digitalio.Direction.OUTPUT
 #Finally set up thermocouple object - defaults to K Type
 thermocouple = adafruit_max31856.MAX31856(SPI,CS)
 
-# The .temperature reads the register - sets CS to low - and reads
+# The .temperature reads the register - sets CS to low - and reads then puts
+#   high after
 print(thermocouple.temperature)
