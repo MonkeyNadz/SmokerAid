@@ -26,7 +26,6 @@ Subject to time and the above being successful - I'm looking to add what I think
  - Applying Learning
 	 - Time to Temp - both when starting cooks but also if you want to change temp mid cook -  taking into account external factors such as weather.
 	 - Cooked At - providing estimations based on pit, meat internal and weather temperatures to estimate when a piece of meat will reach the correct temp.
- -
 
 ## Hardware Components
 This isn't a software solution - and is going to be mounted onto a WSM - needing some control circuitry as well as some mains attached power circuits... please do not mess about with this if you're not comfortable with electronics. If you are in doubt or do not have prior experience - please contact an electrician for assistance.
