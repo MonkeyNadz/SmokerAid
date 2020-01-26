@@ -11,25 +11,17 @@ def thermocoupleSetup(CSPin):
     thermocouple = adafruit_max31856.MAX31856(SPI,CS)
     return thermocouple
 
-def RelayOn(pin):
-    pin.value = True
-
-def RelayOff(pin):
-    pin.value = False
-
-def RelaySetup(pin):
-    controlPin = pin
-    controlPin.direction = digitalio.Direction.OUTPUT
-    return controlPin
-
 if __name__ == "__main__":
     thermocouple = thermocoupleSetup(board.D5)
-    relay = RelaySetup(board.D17)
+    relay = digitalio.DigitalInOut(board.D17)
+    relay.direction = digitalio.Direction.OUTPUT
 
     while True:
         cur_temp = thermocouple.temperature
-        print(cur_temp)
+#        print(cur_temp)
         if cur_temp >= 24:
-            fan.RelayOn()
+            print(str(cur_temp) + " too high setting fan on...")
+            relay.value = True
         else:
-            fan.RelayOff()
+            print(str(cur_temp) + " too low setting fan off...")
+            relay.value = False
