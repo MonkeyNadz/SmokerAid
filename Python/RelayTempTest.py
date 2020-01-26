@@ -31,11 +31,8 @@ if __name__ == "__main__":
 
     while True:
         cur_temp = thermocouple.temperature
-	print(cur_temp)
+        print(cur_temp)
         if cur_temp >= 24:
             fan.RelayOn()
         else:
             fan.RelayOff()
-
-
-            
