@@ -4,6 +4,29 @@
 
 DIY electronics solution for helping maintain stable temps when smoking meat on the Weber Smokey Mountain (WSM). Initially this is only going to be for pit temps at one or more locations but potentially for internal temps much like a standard iGrill would do.  Long term my hopes and dreams would be for this to be an iGrill with the ability to alter the pit temp automatically and apply analytics and learning to cooks.
 
+## Installation
+As the code is python only - I create a virtualenv, and then clone the code within it, then install dependencies within that using pip. n.b. some requirements may be raspberry pi specific.
+
+    python3 -m venv <venv-name>
+    source <venv-name>/bin/activate
+    pip install -r path/to/requirements.txt
+
+Here I use the venv package instead of virtualenv, as I don't need the flexibility of specifying a python version yet, and this allows me to execute the code without having to execute it as python3 due to the venv only having visibility of python3.
+
+Keep your environment clean - and detach from it when you're not using it to prevent erroneously adding unwanted packages. do so by executing the below in the terminal.
+
+    deactivate
+
+As of now that's all you have to do to fetch dependencies,! Hopefully it doesn't get much more complicated
+
+### Running the Python Code
+
+If you're within the virtual environment from the install - then you're goed to just execute the scripts as you'd normally do, example as below:
+
+    python ThermocoupleTest.py
+
+Hopefully this'll get far more interactive over time
+
 ## Status and Planned Features
 
 Very much a work in progress - and something I'm doing for fun - I'll update this as I complete parts.
@@ -46,7 +69,9 @@ This isn't a software solution - and is going to be mounted onto a WSM - needing
 I'm of course going to be leveraging some libraries  - and some key ones below:
 
 ### Python Libraries
+n.b. Python 3.7 was been used for testing - your mileage may vary.
 
 #### Adafruit_CircuitPython_MAX31856
+Installation will be done via the install of requirements.txt Dependencies, but if that fails, the reference is above will point you in the right direction.
 
 Reference [here](https://github.com/adafruit/Adafruit_CircuitPython_MAX31856), provides a simple library for querying the thermocouple amplifier - note that this requires the SPI interface to be enabled - reference to enable it  [here](https://www.raspberrypi-spy.co.uk/2014/08/enabling-the-spi-interface-on-the-raspberry-pi/).
