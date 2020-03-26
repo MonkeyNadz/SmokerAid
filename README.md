@@ -8,11 +8,17 @@ DIY electronics solution for helping maintain stable temps when smoking meat on 
 ## Installation
 As the code is python only - I create a virtualenv, and then clone the code within it, then install dependencies within that using pip. n.b. some requirements may be raspberry pi specific.
 
-    python3 -m venv <venv-name>
+    python3 -m venv <venv-name>    
     source <venv-name>/bin/activate
-    pip install -r path/to/requirements.txt
 
-Here I use the venv package instead of virtualenv, as I don't need the flexibility of specifying a python version yet, and this allows me to execute the code without having to execute it as python3 due to the venv only having visibility of python3.
+This will create a new folder homing your virtual environment, and to keep the environments separate, open that folder, and clone within that.
+
+    cd <venv-name>
+    git clone https://github.com/MonkeyNadz/SmokerAid
+
+Then installing the dependencies is as easy as the below - n.b. not pip3, as the venv is python3 by default.
+
+    pip install -r SmokerAid/Python/requirements.txt
 
 Keep your environment clean - and detach from it when you're not using it to prevent erroneously adding unwanted packages. do so by executing the below in the terminal.
 
