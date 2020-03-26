@@ -1,5 +1,6 @@
 
 
+
 # SmokerAid
 
 DIY electronics solution for helping maintain stable temps when smoking meat on the Weber Smokey Mountain (WSM). Initially this is only going to be for pit temps at one or more locations but potentially for internal temps much like a standard iGrill would do.  Long term my hopes and dreams would be for this to be an iGrill with the ability to alter the pit temp automatically and apply analytics and learning to cooks.
@@ -65,8 +66,17 @@ This isn't a software solution - and is going to be mounted onto a WSM - needing
 	 - Using Mean Well  32W 5V/12V dc switch mode PSU ( SKU - RD-35A)
 	 - I've also added a kettle lead adapter to make the wiring safer, it also has a dedicated on/off switch for ease of use.
 
-### Thermocouple wiring
+### Thermocouple Wiring
 Specific Thermocouple wiring instructions found [here](https://learn.adafruit.com/adafruit-max31856-thermocouple-amplifier/python-circuitpython#python-computer-wiring-5-5)
+
+### Relay and Fan Wiring
+I used a breadboard to simplify some wiring, taking the 12V from the power supply, to the "power rails" on the breadboard, and then connecting up as follows:
+
+ - +12V from PSU to +V line on breadboard
+ - Bring 12V to a wiring lane with a jumper
+ - Connect fan to this lane, and link other side of fan wiring to another wiring lane
+ - Connect this wiring lane to the relay switched side (12V) and then connect the neutral pole of  the Relay to the -V line on the breadboard
+ - Connect the -V lane on the breadboard to the -12V terminal on the PSU.
 
 ## Software Dependencies
 I'm of course going to be leveraging some libraries  - and some key ones below:
