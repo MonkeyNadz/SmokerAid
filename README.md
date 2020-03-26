@@ -65,6 +65,9 @@ This isn't a software solution - and is going to be mounted onto a WSM - needing
 	 - Using Mean Well  32W 5V/12V dc switch mode PSU ( SKU - RD-35A)
 	 - I've also added a kettle lead adapter to make the wiring safer, it also has a dedicated on/off switch for ease of use.
 
+### Thermocouple wiring
+Specific Thermocouple wiring instructions found [here](https://learn.adafruit.com/adafruit-max31856-thermocouple-amplifier/python-circuitpython#python-computer-wiring-5-5)
+
 ## Software Dependencies
 I'm of course going to be leveraging some libraries  - and some key ones below:
 
