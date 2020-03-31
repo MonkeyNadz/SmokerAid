@@ -1,8 +1,38 @@
 
 
+
 # SmokerAid
 
 DIY electronics solution for helping maintain stable temps when smoking meat on the Weber Smokey Mountain (WSM). Initially this is only going to be for pit temps at one or more locations but potentially for internal temps much like a standard iGrill would do.  Long term my hopes and dreams would be for this to be an iGrill with the ability to alter the pit temp automatically and apply analytics and learning to cooks.
+
+## Installation
+As the code is python only - I create a virtualenv, and then clone the code within it, then install dependencies within that using pip. n.b. some requirements may be raspberry pi specific.
+
+    python3 -m venv <venv-name>    
+    source <venv-name>/bin/activate
+
+This will create a new folder homing your virtual environment, and to keep the environments separate, open that folder, and clone within that.
+
+    cd <venv-name>
+    git clone https://github.com/MonkeyNadz/SmokerAid
+
+Then installing the dependencies is as easy as the below - n.b. not pip3, as the venv is python3 by default.
+
+    pip install -r SmokerAid/Python/requirements.txt
+
+Keep your environment clean - and detach from it when you're not using it to prevent erroneously adding unwanted packages. do so by executing the below in the terminal.
+
+    deactivate
+
+As of now that's all you have to do to fetch dependencies,! Hopefully it doesn't get much more complicated
+
+### Running the Python Code
+
+If you're within the virtual environment from the install - then you're goed to just execute the scripts as you'd normally do, example as below:
+
+    python ThermocoupleTest.py
+
+Hopefully this'll get far more interactive over time
 
 ## Status and Planned Features
 
@@ -42,11 +72,25 @@ This isn't a software solution - and is going to be mounted onto a WSM - needing
 	 - Using Mean Well  32W 5V/12V dc switch mode PSU ( SKU - RD-35A)
 	 - I've also added a kettle lead adapter to make the wiring safer, it also has a dedicated on/off switch for ease of use.
 
+### Thermocouple Wiring
+Specific Thermocouple wiring instructions found [here](https://learn.adafruit.com/adafruit-max31856-thermocouple-amplifier/python-circuitpython#python-computer-wiring-5-5)
+
+### Relay and Fan Wiring
+I used a breadboard to simplify some wiring, taking the 12V from the power supply, to the "power rails" on the breadboard, and then connecting up as follows:
+
+ - +12V from PSU to +V line on breadboard
+ - Bring 12V to a wiring lane with a jumper
+ - Connect fan to this lane, and link other side of fan wiring to another wiring lane
+ - Connect this wiring lane to the relay switched side (12V) and then connect the neutral pole of  the Relay to the -V line on the breadboard
+ - Connect the -V lane on the breadboard to the -12V terminal on the PSU.
+
 ## Software Dependencies
 I'm of course going to be leveraging some libraries  - and some key ones below:
 
 ### Python Libraries
+n.b. Python 3.7 was been used for testing - your mileage may vary.
 
 #### Adafruit_CircuitPython_MAX31856
+Installation will be done via the install of requirements.txt Dependencies, but if that fails, the reference is above will point you in the right direction.
 
 Reference [here](https://github.com/adafruit/Adafruit_CircuitPython_MAX31856), provides a simple library for querying the thermocouple amplifier - note that this requires the SPI interface to be enabled - reference to enable it  [here](https://www.raspberrypi-spy.co.uk/2014/08/enabling-the-spi-interface-on-the-raspberry-pi/).
