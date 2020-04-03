@@ -10,6 +10,7 @@ Build the container as normal.
  
     docker build -t monkeynadz/smokerpi:1
 
+Main thing to note - is that the dependencies won't be picked up unless you build in a raspberry pi, tried building within another RasPi container being deployed elsewhere but no dice.
 
 ### Running the Container Locally
 You just cant run this container as it needs access to GPIO, simplest workaorund is to run with privileged mode as below:
