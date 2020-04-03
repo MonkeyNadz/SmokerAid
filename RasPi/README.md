@@ -1,7 +1,7 @@
 # SmokerAid - RasPi
 This section will long term host the code for the raspberry pi and the thermocouple/relay/fan code, and its interaction with other devices, and the future development 
 of the API by which to interact with them (and DB links).
-### Installation/Container Build
+### Container Build
 Build the container as normal.
  
     docker build -t <reponame>/<name>:<tag>
@@ -11,7 +11,7 @@ Build the container as normal.
     docker build -t monkeynadz/smokerpi:1
 
 
-### Running the Container
+### Running the Container Locally
 You just cant run this container as it needs access to GPIO, simplest workaorund is to run with privileged mode as below:
 
     docker run --privileged -d <reponame>/<name>:<tag> 
@@ -19,3 +19,26 @@ You just cant run this container as it needs access to GPIO, simplest workaorund
 e.g. 
 
     docker run --privileged -d monkeynadz/smokerpi:1
+
+### Setting up Docker Engine for remote access
+Follow the instructions [here](https://docs.docker.com/install/linux/linux-postinstall/), which include configuring systemd to expose the docker on a given port, i did so by editing the systemd file.
+
+Best practice is to follow the securing your connection steps - i.e. adding certificates to the socket.
+
+
+### Terraform 
+If you havent completed the securing connections - then you should be able to navigate to the RasPi folder - and after cloning or adding a new file - hit it with a:
+
+    terraform init
+    
+Then you can stage the changes and view what will update.
+    
+    terraform plan
+    
+When you're happy to run it - use the below
+    
+    terraform apply
+    
+#### Noteworthy for the TF file
+Due to the requirement to access the GPIO pins - the docker container needs to be run in privileged mode.
+   
