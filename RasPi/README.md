@@ -28,6 +28,10 @@ Best practice is to follow the securing your connection steps - i.e. adding cert
 
 
 ### Terraform 
+Mostly default Terraform commands - just worth noting that due to the requirement to access the GPIO pins - the docker container needs to be run in privileged mode.
+
+I'd also set up a workspace per folder - believe thats a half decent practice to limit scope impact - but yet to learn properly.
+
 If you havent completed the securing connections - then you should be able to navigate to the RasPi folder - and after cloning or adding a new file - hit it with a:
 
     terraform init
@@ -40,6 +44,5 @@ When you're happy to run it - use the below
     
     terraform apply
     
-#### Noteworthy for the TF file
-Due to the requirement to access the GPIO pins - the docker container needs to be run in privileged mode.
+
    
