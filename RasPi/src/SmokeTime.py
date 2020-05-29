@@ -49,25 +49,7 @@ if __name__ == "__main__":
             headers = "Time, Temp, Message\n"
             f.write(headers)
 
-
-    formatter = json_log_formatter.JSONFormatter()
-
-    json_handler = logging.FileHandler(filename='/var/log/my-log.json')
-    json_handler.setFormatter(formatter)
-    logger = logging.getLogger('my_json')
-    logger.addHandler(json_handler)
-    logger.setLevel(logging.INFO)
-
-    #logging.basicConfig(format= "%(asctime)s, %(message)s", filename='/var/tmp/SmokerPi/RasPi/temp.log', level=logging.INFO)
-
-    logging.basicConfig(format= "%(message)s", filename='/var/tmp/SmokerPi/RasPi/temp.log', level=logging.INFO)
-
-#    logger = logging.getLogger('smokerapp')
-#    hdlr = logging.FileHandler('/var/tmp/SmokerPi/RasPi/myapp.log')
-#    formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-#    hdlr.setFormatter(formatter)
-#    logging.addHandler(hdlr)
-#    logger.setLevel(logging.INFO)
+    logging.basicConfig(format="%(message)s", filename='/var/tmp/SmokerPi/RasPi/temp.log', level=logging.INFO)
 
     while True:
         cur_temp = thermocouple.temperature
@@ -75,7 +57,6 @@ if __name__ == "__main__":
         if cur_temp >= target_tmp:
             relay.value = False
             m = CustomMessage(temp=cur_temp, time = time.asctime(), fan = "off"
-            logging.info("")
             logging.info(str(m))
         else:
             relay.value = True
@@ -83,7 +64,3 @@ if __name__ == "__main__":
             logging.info(str(m))
 
         time.sleep(2)
-
-
-
-
