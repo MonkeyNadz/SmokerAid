@@ -1,0 +1,56 @@
+import board
+import digitalio
+import time
+import busio
+import adafruit_max31856
+import logging
+import json
+
+def thermocoupleSetup(CSPin):
+    SPI = busio.SPI(board.SCK,board.MOSI,board.MISO)
+    CS = digitalio.DigitalInOut(CSPin)
+    CS.direction = digitalio.Direction.OUTPUT
+    thermocouple = adafruit_max31856.MAX31856(SPI,CS)
+    return thermocouple
+
+if __name__ == "__main__":
+    thermocouple = thermocoupleSetup(board.D5)
+    relay = digitalio.DigitalInOut(board.D17)
+    relay.direction = digitalio.Direction.OUTPUT
+
+    settings_file = "settings.conf"
+    sf = open("settings.conf","r")
+
+    target_tmp = 0
+    with open("settings.conf", "r") as sf:
+        data = json.load(sf)
+        target_tmp = data["target_tmp"]
+
+
+
+    # target_tmp = int(input("Target Temperature: "))
+
+    logging.basicConfig(filename='/var/tmp/SmokerPi/RasPi/myapp.log', level=logging.INFO)
+
+#    logger = logging.getLogger('smokerapp')
+#    hdlr = logging.FileHandler('/var/tmp/SmokerPi/RasPi/myapp.log')
+#    formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+#    hdlr.setFormatter(formatter)
+#    logging.addHandler(hdlr)
+#
+
+    logger.setLevel(logging.INFO)
+
+    while True:
+        cur_temp = thermocouple.temperature
+
+        if cur_temp >= target_tmp:
+            # print(str(cur_temp) + " too high setting fan off...")
+            relay.value = False
+            logger.info(str(cur_temp) + " too high setting fan off...")
+        else:
+            # print(str(cur_temp) + " too low setting fan on...")
+            relay.value = True
+            logger.info(str(cur_temp) + " too low setting fan on...")
+        time.sleep(2)
+
