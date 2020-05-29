@@ -36,14 +36,6 @@ if __name__ == "__main__":
         data = json.load(sf)
         target_tmp = int(data["target_tmp"])
 
-
-
-    path = pathlib.Path('/var/tmp/SmokerPi/RasPi/temp.log')
-    if not path.exists():
-        with open('/var/tmp/SmokerPi/RasPi/temp.log','w') as f:
-            headers = "Time, Temp, Message\n"
-            f.write(headers)
-
     logging.basicConfig(format="%(message)s", filename='/var/tmp/SmokerPi/RasPi/temp.log', level=logging.INFO)
 
     while True:
@@ -51,11 +43,13 @@ if __name__ == "__main__":
 
         if cur_temp >= target_tmp:
             relay.value = False
-            m = CustomMessage(temp=cur_temp, time = time.asctime(), fan = "off"
+            m = CustomMessage(temp=cur_temp, time = time.asctime(), fan = "off")
+            print(m)
+
             logging.info(str(m))
         else:
             relay.value = True
-            m = CustomMessage(temp=cur_temp, time = time.asctime(), fan = "on"
+            m = CustomMessage(temp=cur_temp, time = time.asctime(), fan = "on")
             logging.info(str(m))
 
         time.sleep(2)

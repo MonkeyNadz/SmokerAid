@@ -4,7 +4,9 @@
   <meta charset="utf-8" />
   <meta http-equiv="refresh" content="5" />
   <title>{{ title }}</title>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
 </head>
 
 <body>
@@ -12,61 +14,38 @@
     <h1>{{ title }}</h1>
     <h2>Current Temperature - {{ cur_tmp  }}&deg;C</h2>
 
-    <canvas id="chart" width="600" height="400"></canvas>
-    <script>
 
-      // bar chart data
-      var barData = {
-        labels : [
-          {% for item in labels %}
-            "{{ item }}",
-          {% endfor %}
-        ],
+<canvas id="line-chart" width="800" height="450"></canvas>
 
-        datasets : [{
-          fillColor: "rgba(151,187,205,0.2)",
-          strokeColor: "rgba(151,187,205,1)",
-          pointColor: "rgba(151,187,205,1)",
-          pointStrokeColor: "#fff",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(151,187,205,1)",
-          bezierCurve : false,
-          data : [
-	    {% for item in values %}
-              {{ item }},
-            {% endfor %}]
-          }
-	]
-      }
+<script>
+new Chart(document.getElementById("line-chart"), {
+    type: 'line',
 
-      Chart.defaults.global.animationSteps = 50;
-      Chart.defaults.global.tooltipYPadding = 16;
-      Chart.defaults.global.tooltipCornerRadius = 0;
-      Chart.defaults.global.tooltipTitleFontStyle = "normal";
-      Chart.defaults.global.tooltipFillColor = "rgba(0,0,0,0.8)";
-      Chart.defaults.global.animationEasing = "easeOutBounce";
-      Chart.defaults.global.responsive = false;
-      Chart.defaults.global.scaleLineColor = "black";
-      Chart.defaults.global.scaleFontSize = 16;
+    data: {
+        labels: [{% for item in labels %}
+                 "{{item}}",
+                {% endfor %}],
+        datasets: [{
+            label: 'Smoker Temps',
+            backgroundColor: 'rgb(247, 86, 86)',
+            borderColor: 'rgb(210, 37, 37)',
+            data : [{% for item in values %}
+                    {{item}},
+                   {% endfor %}]
 
-      // get bar chart canvas
-      var mychart = document.getElementById("chart").getContext("2d");
+        },{
+            label: 'Target Temp',
+            borderColor: 'rgb(84, 54, 54)',
+            data : [{% for item in values %}
+                    "{{tgt_tmp}}",
+                   {% endfor %}],
+            fill: false
+          
+        }]
+    },
+    options: {}
 
-      steps = 10
-      max = {{ max }}
-      // draw bar chart
-      var LineChartDemo = new Chart(mychart).Line(barData, {
-        scaleOverride: true,
-        scaleSteps: steps,
-        scaleStepWidth: Math.ceil(max / steps),
-        scaleStartValue: 0,
-        scaleShowVerticalLines: true,
-        scaleShowGridLines : true,
-        barShowStroke : true,
-        scaleShowLabels: true,
-        bezierCurve: false,
-      });
-
+});
     </script>
   </center>
 </body>
