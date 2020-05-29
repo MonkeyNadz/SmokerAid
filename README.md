@@ -5,7 +5,7 @@
 
 DIY electronics solution for helping maintain stable temps when smoking meat on the Weber Smokey Mountain (WSM). Initially this is only going to be for pit temps at one or more locations but potentially for internal temps much like a standard iGrill would do.  Long term my hopes and dreams would be for this to be an iGrill with the ability to alter the pit temp automatically and apply analytics and learning to cooks.
 
-## Installation
+## Installation - Section marked for delection/alteration due to folder restructure
 As the code is python only - I create a virtualenv, and then clone the code within it, then install dependencies within that using pip. n.b. some requirements may be raspberry pi specific.
 
     python3 -m venv <venv-name>    
