@@ -31,19 +31,14 @@ if __name__ == "__main__":
     settings_file = "settings.conf"
     sf = open("settings.conf","r")
 
-
-
     target_tmp = 0
     with open("settings.conf", "r") as sf:
         data = json.load(sf)
         target_tmp = int(data["target_tmp"])
 
-#    print(target_tmp)
 
-    # target_tmp = int(input("Target Temperature: "))
 
     path = pathlib.Path('/var/tmp/SmokerPi/RasPi/temp.log')
-#    print(path.exists())
     if not path.exists():
         with open('/var/tmp/SmokerPi/RasPi/temp.log','w') as f:
             headers = "Time, Temp, Message\n"
